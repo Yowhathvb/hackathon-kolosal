@@ -4,7 +4,7 @@ include '../includes/header.php';
 include '../includes/ai_assistant.php';
 include '../includes/auth_check.php';
 
-$stmt = $pdo->prepare("SELECT * FROM shops WHERE user_id = ? AND status = 'active'");
+ $stmt = $pdo->prepare("SELECT * FROM shops WHERE user_id = ? AND status = 'active'");
 $stmt->execute([$_SESSION['user_id']]);
 $shop = $stmt->fetch();
 

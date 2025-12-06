@@ -43,8 +43,8 @@ try {
 	<?php endif; ?>
 
 	<div class="mb-3">
-		<a href="upload_ai.php" class="btn btn-primary"><i class="fas fa-upload"></i> Tambah Produk (AI)</a>
-		<a href="create.php" class="btn btn-secondary ms-2"><i class="fas fa-plus"></i> Tambah Produk Manual</a>
+		<!-- <a href="upload_ai.php" class="btn btn-primary"><i class="fas fa-upload"></i> Tambah Produk (AI)</a> -->
+		<a href="create.php" class="btn btn-secondary ms-2"><i class="fas fa-plus"></i> Tambah Produk</a>
 	</div>
 
 	<div class="table-responsive">

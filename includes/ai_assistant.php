@@ -35,7 +35,7 @@ class KolosalAIAssistant {
                     "content" => $prompt
                 ]
             ],
-            "max_tokens" => 500,
+            "max_tokens" => 2500,
             "temperature" => 0.7
         ];
         
