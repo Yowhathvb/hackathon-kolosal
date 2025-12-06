@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 06, 2025 at 01:53 PM
+-- Generation Time: Dec 06, 2025 at 04:13 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -42,7 +42,8 @@ CREATE TABLE `cart` (
 
 INSERT INTO `cart` (`id`, `user_id`, `product_id`, `quantity`, `created_at`, `updated_at`) VALUES
 (1, 2, 2, 1, '2025-12-06 10:53:18', '2025-12-06 13:35:48'),
-(2, 2, 1, 1, '2025-12-06 13:35:57', '2025-12-06 13:35:57');
+(2, 2, 1, 1, '2025-12-06 13:35:57', '2025-12-06 13:35:57'),
+(3, 3, 2, 1, '2025-12-06 16:02:28', '2025-12-06 16:02:28');
 
 -- --------------------------------------------------------
 
@@ -69,6 +70,44 @@ INSERT INTO `categories` (`id`, `name`, `slug`, `description`, `parent_id`, `cre
 (3, 'Kesehatan & Kecantikan', 'kesehatan-kecantikan', 'Produk kesehatan dan kecantikan', NULL, '2025-12-01 04:33:02'),
 (4, 'Rumah Tangga', 'rumah-tangga', 'Peralatan rumah tangga', NULL, '2025-12-01 04:33:02'),
 (5, 'Olahraga', 'olahraga', 'Perlengkapan olahraga', NULL, '2025-12-01 04:33:02');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `order_number` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `total_amount` decimal(10,2) NOT NULL,
+  `order_status` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT 'pending',
+  `payment_method` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `payment_status` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT 'pending',
+  `shipping_address` text COLLATE utf8mb4_unicode_ci,
+  `shipping_cost` decimal(10,2) DEFAULT '0.00',
+  `notes` text COLLATE utf8mb4_unicode_ci,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_items`
+--
+
+CREATE TABLE `order_items` (
+  `id` int NOT NULL,
+  `order_id` int NOT NULL,
+  `product_id` int NOT NULL,
+  `quantity` int NOT NULL,
+  `price` decimal(10,2) NOT NULL,
+  `status` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT 'pending',
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -104,7 +143,7 @@ CREATE TABLE `products` (
 
 INSERT INTO `products` (`id`, `shop_id`, `product_name`, `product_slug`, `description`, `price`, `stock`, `images`, `category_id`, `tags`, `ai_generated`, `seo_title`, `seo_description`, `seo_keywords`, `status`, `views`, `created_at`, `updated_at`, `is_featured`) VALUES
 (1, 1, 'Produk 20251205152511', 'produk-20251205152511-6932f96272482', 'Deskripsi untuk Produk 20251205152511. Produk berkualitas dengan harga terjangkau. Cocok untuk berbagai kebutuhan.', '10000.00', 100, '[\"1764948322_6932f96271bd0.jpg\"]', 1, '[\"produk\",\"online\",\"ecommerce\",\"terbaru\"]', 1, 'Produk 20251205152511', 'Beli Produk 20251205152511 dengan kualitas terbaik. Harga murah, bergaransi, dan pengiriman cepat.', '', 'published', 2, '2025-12-05 15:25:22', '2025-12-06 13:35:57', 0),
-(2, 1, 'Buku Belajar Anak dengan Topi Wisuda Edukatif', 'buku-belajar-anak-dengan-topi-wisuda-edukatif-6933fd7831737', 'Buku belajar anak yang dirancang menarik dengan ilustrasi topi wisuda dan buku terbuka, simbol pendidikan dan pencapaian akademik. Produk ini ideal sebagai hadiah belajar, motivasi belajar, atau alat bantu pendidikan anak. Desain modern dan warna cerah membuatnya mudah diterima anak-anak, sambil mengajarkan pentingnya pendidikan sejak dini. Cocok untuk anak usia dini hingga sekolah dasar, membantu mengembangkan minat baca dan rasa ingin tahu. Produk edukatif yang praktis dan bermakna.', '10000.00', 100, '[\"1765014904_6933fd78301cd.jpg\"]', NULL, '[\"buku belajar\",\"pendidikan anak\",\"hadiah anak\",\"topi wisuda\",\"belajar\",\"edukatif\",\"anak usia dini\"]', 1, 'Buku Belajar Anak dengan Topi Wisuda - Edukatif & Menarik', 'Temukan buku belajar anak dengan desain topi wisuda yang menginspirasi. Produk edukatif untuk mengembangkan minat baca dan motivasi belajar anak. Ideal sebagai hadiah atau alat pendidikan. Beli sekarang!', '', 'published', 4, '2025-12-06 09:55:04', '2025-12-06 13:42:23', 0);
+(2, 1, 'Buku Belajar Anak dengan Topi Wisuda Edukatif', 'buku-belajar-anak-dengan-topi-wisuda-edukatif-6933fd7831737', 'Buku belajar anak yang dirancang menarik dengan ilustrasi topi wisuda dan buku terbuka, simbol pendidikan dan pencapaian akademik. Produk ini ideal sebagai hadiah belajar, motivasi belajar, atau alat bantu pendidikan anak. Desain modern dan warna cerah membuatnya mudah diterima anak-anak, sambil mengajarkan pentingnya pendidikan sejak dini. Cocok untuk anak usia dini hingga sekolah dasar, membantu mengembangkan minat baca dan rasa ingin tahu. Produk edukatif yang praktis dan bermakna.', '10000.00', 100, '[\"1765014904_6933fd78301cd.jpg\"]', NULL, '[\"buku belajar\",\"pendidikan anak\",\"hadiah anak\",\"topi wisuda\",\"belajar\",\"edukatif\",\"anak usia dini\"]', 1, 'Buku Belajar Anak dengan Topi Wisuda - Edukatif & Menarik', 'Temukan buku belajar anak dengan desain topi wisuda yang menginspirasi. Produk edukatif untuk mengembangkan minat baca dan motivasi belajar anak. Ideal sebagai hadiah atau alat pendidikan. Beli sekarang!', '', 'published', 7, '2025-12-06 09:55:04', '2025-12-06 16:08:09', 0);
 
 -- --------------------------------------------------------
 
@@ -134,7 +173,8 @@ CREATE TABLE `shops` (
 --
 
 INSERT INTO `shops` (`id`, `user_id`, `shop_name`, `shop_slug`, `shop_description`, `shop_logo`, `shop_banner`, `shop_address`, `shop_phone`, `shop_email`, `status`, `verification_documents`, `verified_at`, `created_at`) VALUES
-(1, 2, 'jars', 'jars', 'jars', NULL, NULL, 'ada', '545454454545', '', 'verified', '[\"1764569290_ecommerce_db.sql\"]', '2025-12-01 06:21:35', '2025-12-01 06:08:10');
+(1, 2, 'jars', 'jars', 'jars', NULL, NULL, 'ada', '545454454545', '', 'verified', '[\"1764569290_ecommerce_db.sql\"]', '2025-12-01 06:21:35', '2025-12-01 06:08:10'),
+(2, 4, 'toko 1', 'toko-1', 'toko1', 'logo_1765030241_6934396195596.jpg', NULL, 'toko 1', '08 12345612345', 'toko1@gmail.com', 'verified', '[\"doc_1765030241_6934396196652.jpg\"]', '2025-12-06 14:19:45', '2025-12-06 14:10:41');
 
 -- --------------------------------------------------------
 
@@ -160,9 +200,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `full_name`, `phone`, `avatar`, `role`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'admin@myshopee.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Administrator', NULL, NULL, 'admin', '2025-12-01 04:33:02', '2025-12-01 04:33:02'),
 (2, 'jars', 'jars@gmail.com', '$2y$10$zW3U6/QjyxKQWup0Yno7re7T22ybMF5lTZCGhHfpWGgyGYsRFFQu2', 'jars', NULL, NULL, 'seller', '2025-12-01 05:21:47', '2025-12-01 06:27:15'),
-(3, 'user1', 'user1@gmail.com', '$2y$10$2waJCFYXjBMyQIOkzMxi8OyTzppJDES4sSn0lGazQFUmYW46AAgBe', 'user', NULL, NULL, 'customer', '2025-12-06 13:46:27', '2025-12-06 13:46:27');
+(3, 'user1', 'user1@gmail.com', '$2y$10$2waJCFYXjBMyQIOkzMxi8OyTzppJDES4sSn0lGazQFUmYW46AAgBe', 'user', NULL, NULL, 'customer', '2025-12-06 13:46:27', '2025-12-06 13:46:27'),
+(4, 'toko1', 'toko1@gmail.com', '$2y$10$PQ9dpgCiVl5XcZXh89UXpupskpUrx2zZwtIhFW5667JrAkT6DZdVq', 'toko', NULL, NULL, 'seller', '2025-12-06 14:04:05', '2025-12-06 14:10:41'),
+(5, 'admin', 'admin@gmail.com', '$2y$10$cd9s3xlmyoFyJfGYqzh4.OCFhjMZuo/ZxhLrMSx6a3oN6C3zZznky', 'admin', NULL, NULL, 'admin', '2025-12-06 14:12:51', '2025-12-06 14:13:07');
 
 --
 -- Indexes for dumped tables
@@ -182,6 +223,22 @@ ALTER TABLE `cart`
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `slug` (`slug`);
+
+--
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `order_number` (`order_number`),
+  ADD KEY `user_id` (`user_id`);
+
+--
+-- Indexes for table `order_items`
+--
+ALTER TABLE `order_items`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `order_id` (`order_id`),
+  ADD KEY `product_id` (`product_id`);
 
 --
 -- Indexes for table `products`
@@ -217,13 +274,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `order_items`
+--
+ALTER TABLE `order_items`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -235,13 +304,13 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `shops`
 --
 ALTER TABLE `shops`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
@@ -253,6 +322,19 @@ ALTER TABLE `users`
 ALTER TABLE `cart`
   ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `cart_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `orders`
+--
+ALTER TABLE `orders`
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `order_items`
+--
+ALTER TABLE `order_items`
+  ADD CONSTRAINT `order_items_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `order_items_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `products`
