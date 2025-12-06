@@ -14,7 +14,7 @@ define('DB_PASS', '');
 define('DB_NAME', 'ecommerce_db');
 
 // Kolosal.ai API Configuration
-define('KOLOSAL_API_KEY', 'kol_eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiZWIxOGNkZTQtMjU0YS00ZmY0LThmZjMtODNlYWI3Y2RlZDY0Iiwia2V5X2lkIjoiZGNlMjU4MjktYjA1NC00OWIwLTkzMzEtZjUzMjZjOGZmYmNkIiwia2V5X25hbWUiOiJoYWNrYXRob24ta29sb3NhbC10ZWtub3BlbmEiLCJlbWFpbCI6ImJ3Znpid0BnbWFpbC5jb20iLCJyYXRlX2xpbWl0X3JwcyI6bnVsbCwibWF4X2NyZWRpdF91c2UiOm51bGwsImNyZWF0ZWRfYXQiOjE3NjQ1NTg5MDcsImV4cGlyZXNfYXQiOjE3OTYwOTQ5MDcsImlhdCI6MTc2NDU1ODkwN30.1iHBL0WzkxH6JFrQhYghvBtzcTRQavs_lIAL0U_UU6o');
+define('KOLOSAL_API_KEY', 'api_kolosal');
 define('KOLOSAL_API_URL', 'https://api.kolosal.ai/v1/chat/completions');
 define('KOLOSAL_MODEL', 'Qwen 3 30BA3B');
 

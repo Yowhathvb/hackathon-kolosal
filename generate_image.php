@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['foto'])) {
         CURLOPT_POST => true,
         CURLOPT_HTTPHEADER => [
             "Content-Type: application/json",
-            "Authorization: Bearer kol_eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiZWIxOGNkZTQtMjU0YS00ZmY0LThmZjMtODNlYWI3Y2RlZDY0Iiwia2V5X2lkIjoiZGNlMjU4MjktYjA1NC00OWIwLTkzMzEtZjUzMjZjOGZmYmNkIiwia2V5X25hbWUiOiJoYWNrYXRob24ta29sb3NhbC10ZWtub3BlbmEiLCJlbWFpbCI6ImJ3Znpid0BnbWFpbC5jb20iLCJyYXRlX2xpbWl0X3JwcyI6bnVsbCwibWF4X2NyZWRpdF91c2UiOm51bGwsImNyZWF0ZWRfYXQiOjE3NjQ1NTg5MDcsImV4cGlyZXNfYXQiOjE3OTYwOTQ5MDcsImlhdCI6MTc2NDU1ODkwN30.1iHBL0WzkxH6JFrQhYghvBtzcTRQavs_lIAL0U_UU6o"
+            "Authorization: Bearer api_kolosal"
         ],
         CURLOPT_POSTFIELDS => json_encode($data)
     ]);
