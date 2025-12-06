@@ -4,15 +4,18 @@
 Project ini merupakan aplikasi **Full PHP Native** yang memanfaatkan **AI Kolosal API** untuk menghasilkan konten otomatis seperti caption, strategy, story, dan berbagai fitur AI lainnya. Aplikasi ini dirancang untuk kebutuhan hackathon, eksperimen, dan implementasi AI pada sistem berbasis PHP.
 
 ---
-#Login (admin)
+##Login (admin)
+
 -Username = admin
 -Password = admin123
 
-#Login (user)
+##Login (user)
+
 -Username = user1
 -Password = user123
 
-#Login (toko)
+##Login (toko)
+
 -Username = toko1
 -Password = toko123
 
